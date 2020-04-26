@@ -38,14 +38,6 @@ public class MainActivity extends AppCompatActivity {
         listView.setAdapter(arrayAdapter);
         cursor = db.loadDataa();
 
-        /*listView.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
-            @Override
-            public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
-                String text = listView.getItemAtPosition(position).toString();
-                return true;
-            }
-        });*/
-
         addItem.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
