@@ -38,7 +38,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         long result = db.insert(DB_TABLE, null, contentValues);
         return result != -1;
     }
-    public Cursor loadData(){
+    public Cursor loadDataa(){
         SQLiteDatabase db = this.getReadableDatabase();
         String query = "Select * from " + DB_TABLE;
         Cursor cursor = db.rawQuery(query, null);
