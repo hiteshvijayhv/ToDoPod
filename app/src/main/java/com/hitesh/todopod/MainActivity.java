@@ -19,7 +19,7 @@ public class MainActivity extends AppCompatActivity {
     Button addItem;
     EditText editText;
     ArrayList<String> listItem;
-    ArrayAdapter arrayAdapter;
+    ArrayAdapter<String> arrayAdapter;
 
     DatabaseHelper db;
     Cursor cursor;
@@ -34,7 +34,7 @@ public class MainActivity extends AppCompatActivity {
         listView = (ListView) findViewById(R.id.listView);
 
         listItem = new ArrayList<>();
-        arrayAdapter = new ArrayAdapter(this, android.R.layout.simple_list_item_1, listItem);
+        arrayAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, listItem);
         listView.setAdapter(arrayAdapter);
         cursor = db.loadDataa();
 
