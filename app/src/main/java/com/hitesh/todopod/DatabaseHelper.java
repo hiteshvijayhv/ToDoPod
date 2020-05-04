@@ -13,16 +13,17 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public static final String ID = "ID";
     public static final String NAME = "NAME";
 
-    public static final String CREATE_TABLE = "CREATE TABLE " + DB_TABLE + " (" + ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
-            NAME + " TEXT " + ") ";
-
 
     public DatabaseHelper(Context context){
         super(context, DB_NAME, null,1);
     }
     @Override
     public void onCreate(SQLiteDatabase db) {
-        db.execSQL(CREATE_TABLE);
+        db.execSQL("CREATE TABLE " + DB_TABLE + " ("
+                + ID
+                + " INTEGER PRIMARY KEY AUTOINCREMENT,"
+                + NAME
+                + " TEXT " + "); ");
     }
 
     @Override
