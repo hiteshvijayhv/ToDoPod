@@ -61,6 +61,8 @@ public class MainActivity extends AppCompatActivity {
                 String item = arrayAdapter.getItem(position);
                 db.delete(item);
                 Toast.makeText(getApplicationContext(), "" + item, Toast.LENGTH_SHORT).show();
+                arrayAdapter.remove(arrayAdapter.getItem(position));
+                arrayAdapter.notifyDataSetChanged();
                 return true;
             }
         });
