@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
@@ -44,12 +45,23 @@ public class MainActivity extends AppCompatActivity {
                 String name = editText.getText().toString();
                 if(!name.equals("")){
                     db.insertData(name);
-                    listItem.add(name);
+                    loadData();
                     Toast.makeText(getApplicationContext(), "Data Saved", Toast.LENGTH_SHORT).show();
                     editText.setText("");
                 } else {
                     Toast.makeText(getApplicationContext(), "Something Went Wrong", Toast.LENGTH_SHORT).show();
                 }
+            }
+        });
+
+        listView.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+            @Override
+            public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
+                //Toast.makeText(getApplicationContext(), "pos = " + position, Toast.LENGTH_SHORT).show();
+                String item = arrayAdapter.getItem(position);
+                db.delete(item);
+                Toast.makeText(getApplicationContext(), "" + item, Toast.LENGTH_SHORT).show();
+                return true;
             }
         });
 
