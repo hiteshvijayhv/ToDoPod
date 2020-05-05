@@ -45,7 +45,7 @@ public class MainActivity extends AppCompatActivity {
                 String name = editText.getText().toString();
                 if(!name.equals("")){
                     db.insertData(name);
-                    loadData();
+                    listItem.add(name);
                     Toast.makeText(getApplicationContext(), "Data Saved", Toast.LENGTH_SHORT).show();
                     editText.setText("");
                 } else {
