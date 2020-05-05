@@ -43,7 +43,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 String name = editText.getText().toString();
-                if(!name.equals("")){
+                if(!name.isEmpty()){
                     db.insertData(name);
                     listItem.add(name);
                     Toast.makeText(getApplicationContext(), "Data Saved", Toast.LENGTH_SHORT).show();
