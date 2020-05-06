@@ -57,7 +57,6 @@ public class MainActivity extends AppCompatActivity {
         listView.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
             @Override
             public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
-                //Toast.makeText(getApplicationContext(), "pos = " + position, Toast.LENGTH_SHORT).show();
                 String item = arrayAdapter.getItem(position);
                 db.delete(item);
                 Toast.makeText(getApplicationContext(), "" + item, Toast.LENGTH_SHORT).show();

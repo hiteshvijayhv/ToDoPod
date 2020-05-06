@@ -19,7 +19,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     }
     @Override
     public void onCreate(SQLiteDatabase db) {
-        db.execSQL("CREATE TABLE " + DB_TABLE + " ("
+        db.execSQL("CREATE TABLE "
+                + DB_TABLE + " ("
                 + "_id"
                 + " INTEGER PRIMARY KEY AUTOINCREMENT,"
                 + NAME
@@ -43,9 +44,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public int delete(String itemID){
 
         SQLiteDatabase db = this.getWritableDatabase();
-
-        //db.execSQL("DELETE FROM " + DB_TABLE + " WHERE ID= " + itemID);
-         //return  db.delete(DB_TABLE,  "NAME=" + itemID, null);
          return db.delete(DB_TABLE, "NAME=?",  new String[]{String.valueOf(itemID)});
     }
 
