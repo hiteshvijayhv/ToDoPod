@@ -91,6 +91,9 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onItemClick(View view, int position) {
                 String name = itemsList.get(position).getTitle();
+                db.delete(name);
+                itemsList.remove(position);
+                mAdapter.notifyDataSetChanged();
                 Toast.makeText(MainActivity.this, name + " was clicked!", Toast.LENGTH_SHORT).show();
             }
         });
