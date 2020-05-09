@@ -81,17 +81,22 @@ public class MainActivity extends AppCompatActivity {
 
         recyclerView = (RecyclerView) findViewById(R.id.recycler_view);
         mAdapter = new RecyclerViewAdapter(itemsList);
-        RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getApplicationContext());
+        final RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getApplicationContext());
         recyclerView.setLayoutManager(mLayoutManager);
         recyclerView.setItemAnimator(new DefaultItemAnimator());
         recyclerView.setAdapter(mAdapter);
 
         loadData();
+        mAdapter.setOnItemClickListener(new RecyclerViewAdapter.OnItemClickListener() {
+            @Override
+            public void onItemClick(View view, int position) {
+                String name = itemsList.get(position).getTitle();
+                Toast.makeText(MainActivity.this, name + " was clicked!", Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 
-    private void addItems() {
 
-    }
     public void loadData(){
 
         if(cursor.getCount() == 0){
