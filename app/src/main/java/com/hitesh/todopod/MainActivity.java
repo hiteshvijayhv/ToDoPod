@@ -5,6 +5,7 @@ import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.view.View;
@@ -20,7 +21,7 @@ public class MainActivity extends AppCompatActivity {
 
     Button addItem;
     EditText editText;
-
+    String text;
 
     private List<items> itemsList = new ArrayList<>();
     private RecyclerView recyclerView;
@@ -73,8 +74,11 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onItemClick(View view, int position) {
                 String name = itemsList.get(position).getTitle();
-                db.delete(name);
-                itemsList.remove(position);
+                //db.delete(name);
+                //itemsList.remove(position);
+                Intent EditNote = new Intent(getApplicationContext(), EditNoteActivity.class);
+                EditNote.putExtra("text", name);
+                startActivity(EditNote);
                 mAdapter.notifyDataSetChanged();
                 Toast.makeText(MainActivity.this, name + " was clicked!", Toast.LENGTH_SHORT).show();
             }
