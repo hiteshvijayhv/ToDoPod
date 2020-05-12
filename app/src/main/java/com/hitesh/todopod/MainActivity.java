@@ -21,7 +21,6 @@ public class MainActivity extends AppCompatActivity {
 
     Button addItem;
     EditText editText;
-    String text;
 
     private List<items> itemsList = new ArrayList<>();
     private RecyclerView recyclerView;
