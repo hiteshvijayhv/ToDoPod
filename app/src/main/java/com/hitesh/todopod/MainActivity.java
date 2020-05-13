@@ -11,7 +11,10 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.Toast;
+
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -26,6 +29,10 @@ public class MainActivity extends AppCompatActivity {
     private RecyclerView recyclerView;
     private RecyclerViewAdapter mAdapter;
 
+    FloatingActionButton fab, fab1;
+    boolean isFABOpen;
+    LinearLayout fabLayout1;
+
     DatabaseHelper db;
     Cursor cursor;
     @Override
@@ -36,6 +43,10 @@ public class MainActivity extends AppCompatActivity {
         addItem = (Button) findViewById(R.id.addItem);
         editText = (EditText) findViewById(R.id.editText);
         db = new DatabaseHelper(this);
+
+        fabLayout1 = (LinearLayout) findViewById(R.id.fabLayout1);
+        fab = findViewById(R.id.fab);
+        fab1 = findViewById(R.id.fab1);
 
         cursor = db.loadDataa();
 
@@ -82,6 +93,36 @@ public class MainActivity extends AppCompatActivity {
                 Toast.makeText(MainActivity.this, name + " was clicked!", Toast.LENGTH_SHORT).show();
             }
         });
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+
+            public void onClick(View v) {
+                if(!isFABOpen){
+                    open();
+                    fabLayout1.setVisibility(View.VISIBLE);
+                    isFABOpen = true;
+                } else {
+                    close();
+                    isFABOpen = false;
+                }
+            }
+        });
+        fab1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+               Toast.makeText(getApplicationContext(), "clicked", Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+    public void open(){
+        fabLayout1.animate().translationY(-50);
+        fab.animate().rotationBy(135);
+        fabLayout1.animate().alpha(1).setDuration(500);
+    }
+    public void close(){
+        fabLayout1.animate().translationY(10);
+        fab.animate().rotationBy(-135);
+        fabLayout1.animate().alpha(0.0f).setDuration(500);
     }
 
 
