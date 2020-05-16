@@ -84,8 +84,6 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onItemClick(View view, int position) {
                 String name = itemsList.get(position).getTitle();
-                //db.delete(name);
-                //itemsList.remove(position);
                 Intent EditNote = new Intent(getApplicationContext(), EditNoteActivity.class);
                 EditNote.putExtra("text", name);
                 startActivity(EditNote);
