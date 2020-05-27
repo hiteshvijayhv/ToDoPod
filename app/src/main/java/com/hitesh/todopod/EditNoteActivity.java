@@ -29,7 +29,6 @@ public class EditNoteActivity extends AppCompatActivity {
 
         Intent intent = getIntent();
         note = intent.getStringExtra("text");
-        Toast.makeText(getApplicationContext(), "" + note, Toast.LENGTH_SHORT).show();
 
         editNote.addTextChangedListener(new TextWatcher() {
             @Override
