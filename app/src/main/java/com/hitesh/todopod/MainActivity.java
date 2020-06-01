@@ -21,9 +21,6 @@ import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
-
-
-
     private List<items> itemsList = new ArrayList<>();
     private RecyclerView recyclerView;
     private RecyclerViewAdapter mAdapter;
@@ -39,8 +36,6 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        /*addItem = (Button) findViewById(R.id.addItem);
-        editText = (EditText) findViewById(R.id.editText);*/
         db = new DatabaseHelper(this);
 
         fabLayout1 = (LinearLayout) findViewById(R.id.fabLayout1);
@@ -48,12 +43,6 @@ public class MainActivity extends AppCompatActivity {
         fab1 = findViewById(R.id.fab1);
 
         cursor = db.loadDataa();
-
-
-
-
-
-
 
         recyclerView = (RecyclerView) findViewById(R.id.recycler_view);
         mAdapter = new RecyclerViewAdapter(itemsList);
@@ -63,6 +52,7 @@ public class MainActivity extends AppCompatActivity {
         recyclerView.setAdapter(mAdapter);
 
         loadData();
+
         mAdapter.setOnItemClickListener(new RecyclerViewAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(View view, int position) {
@@ -108,9 +98,7 @@ public class MainActivity extends AppCompatActivity {
         fabLayout1.animate().alpha(0.0f).setDuration(500);
     }
 
-
     public void loadData(){
-
         if(cursor.getCount() == 0){
             Toast.makeText(getApplicationContext(), "Database is empty", Toast.LENGTH_SHORT).show();
         } else {

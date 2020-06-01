@@ -28,7 +28,6 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
     public class MyViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
         public TextView title, title2, title3;
 
-
         public MyViewHolder(View view) {
             super(view);
             title = (TextView) view.findViewById(R.id.title);
@@ -53,7 +52,6 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
 
         }
     }
-
 
     public RecyclerViewAdapter(List<items> itemList) {
         this.itemList = itemList;
