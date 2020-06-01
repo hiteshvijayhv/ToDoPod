@@ -109,6 +109,8 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                Toast.makeText(getApplicationContext(), "clicked", Toast.LENGTH_SHORT).show();
+                Intent addNote = new Intent(getApplicationContext(), AddNote.class);
+                startActivity(addNote);
             }
         });
     }
