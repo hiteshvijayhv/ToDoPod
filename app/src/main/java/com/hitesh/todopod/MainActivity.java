@@ -22,8 +22,7 @@ import java.util.List;
 public class MainActivity extends AppCompatActivity {
 
 
-    Button addItem;
-    EditText editText;
+
 
     private List<items> itemsList = new ArrayList<>();
     private RecyclerView recyclerView;
@@ -40,8 +39,8 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        addItem = (Button) findViewById(R.id.addItem);
-        editText = (EditText) findViewById(R.id.editText);
+        /*addItem = (Button) findViewById(R.id.addItem);
+        editText = (EditText) findViewById(R.id.editText);*/
         db = new DatabaseHelper(this);
 
         fabLayout1 = (LinearLayout) findViewById(R.id.fabLayout1);
@@ -50,23 +49,7 @@ public class MainActivity extends AppCompatActivity {
 
         cursor = db.loadDataa();
 
-        addItem.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                String name = editText.getText().toString();
-                if(!name.isEmpty()){
-                    db.insertData(name);
-                    items items = new items("" + name, null, null);
-                    itemsList.add(items);
-                    mAdapter.notifyDataSetChanged();
 
-                    Toast.makeText(getApplicationContext(), "Data Saved", Toast.LENGTH_SHORT).show();
-                    editText.setText("");
-                } else {
-                    Toast.makeText(getApplicationContext(), "Something Went Wrong", Toast.LENGTH_SHORT).show();
-                }
-            }
-        });
 
 
 
