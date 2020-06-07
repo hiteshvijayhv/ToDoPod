@@ -20,24 +20,24 @@ class EditNoteActivity : AppCompatActivity() {
         setContentView(R.layout.activity_edit_note)
         editNote = findViewById<View>(R.id.editNote) as EditText
         db = DatabaseHelper(this)
-        editNote!!.setText(intent.getStringExtra("text"))
+        editNote?.setText(intent.getStringExtra("text"))
         val intent = intent
         note = intent.getStringExtra("text")
-        editNote!!.addTextChangedListener(object : TextWatcher {
+        editNote?.addTextChangedListener(object : TextWatcher {
             override fun beforeTextChanged(s: CharSequence, start: Int, count: Int, after: Int) {}
             override fun onTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {
-                db!!.delete(note.toString());
+                db?.delete(note.toString());
             }
 
             override fun afterTextChanged(s: Editable) {
-                newNote = editNote!!.text.toString()
+                newNote = editNote?.text.toString()
             }
         })
     }
 
     override fun onBackPressed() {
         if (newNote != null) {
-            db!!.insertData(newNote)
+            db?.insertData(newNote)
         }
         val MainActivity = Intent(applicationContext, MainActivity::class.java)
         startActivity(MainActivity)
@@ -52,7 +52,7 @@ class EditNoteActivity : AppCompatActivity() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
             R.id.deleteNote -> {
-                db!!.delete(note!!)
+                db?.delete(note.toString())
                 val intent = Intent(applicationContext, MainActivity::class.java)
                 startActivity(intent)
                 return true
