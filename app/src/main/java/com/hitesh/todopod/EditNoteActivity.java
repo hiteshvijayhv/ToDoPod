@@ -46,7 +46,6 @@ public class EditNoteActivity extends AppCompatActivity {
             }
         });
 
-
     }
     public void onBackPressed() {
 
