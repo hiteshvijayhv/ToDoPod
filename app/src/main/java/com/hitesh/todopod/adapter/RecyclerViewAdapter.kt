@@ -1,11 +1,13 @@
-package com.hitesh.todopod
+package com.hitesh.todopod.adapter
 
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import com.hitesh.todopod.RecyclerViewAdapter.MyViewHolder
+import com.hitesh.todopod.adapter.RecyclerViewAdapter.MyViewHolder
+import com.hitesh.todopod.R
+import com.hitesh.todopod.items
 
 class RecyclerViewAdapter(private val itemList: List<items>) : RecyclerView.Adapter<MyViewHolder>() {
     private var listener: OnItemClickListener? = null

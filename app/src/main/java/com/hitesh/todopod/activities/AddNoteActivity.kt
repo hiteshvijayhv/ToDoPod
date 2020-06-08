@@ -1,4 +1,4 @@
-package com.hitesh.todopod
+package com.hitesh.todopod.activities
 
 import android.content.Intent
 import android.os.Bundle
@@ -6,8 +6,10 @@ import android.view.View
 import android.widget.Button
 import android.widget.EditText
 import androidx.appcompat.app.AppCompatActivity
+import com.hitesh.todopod.helper.DatabaseHelper
+import com.hitesh.todopod.R
 
-class AddNote : AppCompatActivity() {
+class AddNoteActivity : AppCompatActivity() {
     var editText: EditText? = null
     var saveButton: Button? = null
     var userInput: String? = null

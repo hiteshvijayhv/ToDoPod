@@ -1,4 +1,4 @@
-package com.hitesh.todopod;
+package com.hitesh.todopod.activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.DefaultItemAnimator;
@@ -13,6 +13,10 @@ import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.hitesh.todopod.helper.DatabaseHelper;
+import com.hitesh.todopod.R;
+import com.hitesh.todopod.adapter.RecyclerViewAdapter;
+import com.hitesh.todopod.items;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -80,7 +84,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                Toast.makeText(getApplicationContext(), "clicked", Toast.LENGTH_SHORT).show();
-                Intent addNote = new Intent(getApplicationContext(), AddNote.class);
+                Intent addNote = new Intent(getApplicationContext(), AddNoteActivity.class);
                 startActivity(addNote);
             }
         });

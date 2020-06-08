@@ -1,4 +1,4 @@
-package com.hitesh.todopod
+package com.hitesh.todopod.activities
 
 import android.content.Intent
 import android.os.Bundle
@@ -9,6 +9,8 @@ import android.view.MenuItem
 import android.view.View
 import android.widget.EditText
 import androidx.appcompat.app.AppCompatActivity
+import com.hitesh.todopod.helper.DatabaseHelper
+import com.hitesh.todopod.R
 
 class EditNoteActivity : AppCompatActivity() {
     var db: DatabaseHelper? = null
