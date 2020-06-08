@@ -34,7 +34,7 @@ class RecyclerViewAdapter(private val itemList: List<items>) : RecyclerView.Adap
                 if (listener != null) {
                     val position = adapterPosition
                     if (position != RecyclerView.NO_POSITION) {
-                        listener!!.onItemClick(itemView, position)
+                        listener?.onItemClick(itemView, position)
                     }
                 }
             }
