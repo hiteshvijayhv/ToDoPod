@@ -5,12 +5,15 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import com.hitesh.todopod.adapter.RecyclerViewAdapter.MyViewHolder
 import com.hitesh.todopod.R
+import com.hitesh.todopod.adapter.RecyclerViewAdapter.MyViewHolder
 import com.hitesh.todopod.items
+
 
 class RecyclerViewAdapter(private val itemList: List<items>) : RecyclerView.Adapter<MyViewHolder>() {
     private var listener: OnItemClickListener? = null
+
+    private var items: List<items> = ArrayList()
 
     // Define the listener interface
     interface OnItemClickListener {
@@ -49,16 +52,19 @@ class RecyclerViewAdapter(private val itemList: List<items>) : RecyclerView.Adap
                 .inflate(R.layout.recycler_layout, parent, false)
         return MyViewHolder(itemView)
     }
+    fun setNotes(items: List<items?>) {
+        this.items = items as List<items>
+        notifyDataSetChanged()
+    }
 
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
-        val items = itemList[position]
+        val items = items[position]
         holder.title.text = items.title
-        holder.title2.text = items.genre
-        holder.title3.text = items.year
+        //holder.title2.text = items.genre
+        //holder.title3.text = items.year
     }
 
     override fun getItemCount(): Int {
-        return itemList.size
+        return items.size
     }
-
 }

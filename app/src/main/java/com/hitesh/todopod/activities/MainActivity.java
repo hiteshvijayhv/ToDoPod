@@ -1,6 +1,8 @@
 package com.hitesh.todopod.activities;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -17,6 +19,7 @@ import com.hitesh.todopod.helper.DatabaseHelper;
 import com.hitesh.todopod.R;
 import com.hitesh.todopod.adapter.RecyclerViewAdapter;
 import com.hitesh.todopod.items;
+import com.hitesh.todopod.ItemsViewModel;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -31,20 +34,23 @@ public class MainActivity extends AppCompatActivity {
     boolean isFABOpen;
     LinearLayout fabLayout1;
 
-    DatabaseHelper db;
-    Cursor cursor;
+    ItemsViewModel itemsViewModel;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        db = new DatabaseHelper(this);
+        //fabLayout1 = (LinearLayout) findViewById(R.id.fabLayout1);
+        //fab = findViewById(R.id.fab);
+        // fab1 = findViewById(R.id.fab1);
 
-        fabLayout1 = (LinearLayout) findViewById(R.id.fabLayout1);
-        fab = findViewById(R.id.fab);
-        fab1 = findViewById(R.id.fab1);
 
-        cursor = db.loadDataa();
+        itemsViewModel = new ViewModelProvider(this,
+                new ViewModelProvider
+                        .AndroidViewModelFactory(getApplication()))
+                .get(ItemsViewModel.class);
+
+
 
         recyclerView = (RecyclerView) findViewById(R.id.recycler_view);
         mAdapter = new RecyclerViewAdapter(itemsList);
@@ -53,9 +59,14 @@ public class MainActivity extends AppCompatActivity {
         recyclerView.setItemAnimator(new DefaultItemAnimator());
         recyclerView.setAdapter(mAdapter);
 
-        loadData();
+        itemsViewModel.getAllitemss().observe(this, new Observer<List<items>>() {
+            @Override
+            public void onChanged(List<items> items) {
+                mAdapter.setNotes(items);
+            }
+        });
 
-        mAdapter.setOnItemClickListener(new RecyclerViewAdapter.OnItemClickListener() {
+       /* mAdapter.setOnItemClickListener(new RecyclerViewAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(View view, int position) {
                 String name = itemsList.get(position).getTitle();
@@ -87,9 +98,9 @@ public class MainActivity extends AppCompatActivity {
                 Intent addNote = new Intent(getApplicationContext(), AddNoteActivity.class);
                 startActivity(addNote);
             }
-        });
+        });*/
     }
-    public void open(){
+   /* public void open(){
         fabLayout1.animate().translationY(-50);
         fab.animate().rotationBy(135);
         fabLayout1.animate().alpha(1).setDuration(500);
@@ -98,16 +109,5 @@ public class MainActivity extends AppCompatActivity {
         fabLayout1.animate().translationY(10);
         fab.animate().rotationBy(-135);
         fabLayout1.animate().alpha(0.0f).setDuration(500);
-    }
-
-    public void loadData(){
-        if(cursor.getCount() == 0){
-            Toast.makeText(getApplicationContext(), "Database is empty", Toast.LENGTH_SHORT).show();
-        } else {
-            while (cursor.moveToNext()){
-                items items = new items("" + cursor.getString(1), null, null);
-                itemsList.add(items);
-            }
-        }
-    }
+    }*/
 }

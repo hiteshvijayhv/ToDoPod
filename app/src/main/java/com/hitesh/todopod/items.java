@@ -1,35 +1,36 @@
 package com.hitesh.todopod;
 
+import androidx.room.Entity;
+import androidx.room.PrimaryKey;
+
+@Entity(tableName = "note_table")
 public class items {
-    private String title, title2, title3;
 
-    public items(String title, String title2, String title3) {
+    @PrimaryKey(autoGenerate = true)
+    private int id;
+
+    private String title;
+    private String description;
+    private int priority;
+    public items(String title, String description, int priority) {
         this.title = title;
-        this.title2 = title2;
-        this.title3 = title3;
+        this.description = description;
+        this.priority = priority;
     }
-
     public String getTitle() {
         return title;
     }
 
-    public void setTitle(String name) {
-        this.title = name;
+    public void setId(int id) {
+        this.id = id;
     }
-
-    public String getYear() {
-        return title3;
+    public int getId() {
+        return id;
     }
-
-    public void setYear(String year) {
-        this.title3 = year;
+    public String getDescription() {
+        return description;
     }
-
-    public String getGenre() {
-        return title2;
-    }
-
-    public void setGenre(String genre) {
-        this.title2 = title2;
+    public int getPriority() {
+        return priority;
     }
 }

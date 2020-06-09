@@ -19,7 +19,7 @@ class AddNoteActivity : AppCompatActivity() {
         setContentView(R.layout.activity_add_note)
         editText = findViewById<View>(R.id.editText) as EditText
         saveButton = findViewById<View>(R.id.saveButton) as Button
-        db = DatabaseHelper(this)
+        //db = DatabaseHelper(this)
     }
 
     fun saveNote(view: View?) {
