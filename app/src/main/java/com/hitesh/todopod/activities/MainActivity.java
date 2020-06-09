@@ -11,6 +11,8 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 
@@ -30,20 +32,11 @@ public class MainActivity extends AppCompatActivity {
     private RecyclerView recyclerView;
     private RecyclerViewAdapter mAdapter;
 
-    FloatingActionButton fab, fab1;
-    boolean isFABOpen;
-    LinearLayout fabLayout1;
-
     ItemsViewModel itemsViewModel;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-        //fabLayout1 = (LinearLayout) findViewById(R.id.fabLayout1);
-        //fab = findViewById(R.id.fab);
-        // fab1 = findViewById(R.id.fab1);
-
 
         itemsViewModel = new ViewModelProvider(this,
                 new ViewModelProvider
@@ -66,48 +59,18 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-       /* mAdapter.setOnItemClickListener(new RecyclerViewAdapter.OnItemClickListener() {
-            @Override
-            public void onItemClick(View view, int position) {
-                String name = itemsList.get(position).getTitle();
-                Intent EditNote = new Intent(getApplicationContext(), EditNoteActivity.class);
-                EditNote.putExtra("text", name);
-                startActivity(EditNote);
-                mAdapter.notifyDataSetChanged();
-                Toast.makeText(MainActivity.this, name + " was clicked!", Toast.LENGTH_SHORT).show();
-            }
-        });
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
+        final EditText editText = findViewById(R.id.editText);
+        Button button = findViewById(R.id.button);
 
-            public void onClick(View v) {
-                if(!isFABOpen){
-                    open();
-                    fabLayout1.setVisibility(View.VISIBLE);
-                    isFABOpen = true;
-                } else {
-                    close();
-                    isFABOpen = false;
-                }
-            }
-        });
-        fab1.setOnClickListener(new View.OnClickListener() {
+        button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-               Toast.makeText(getApplicationContext(), "clicked", Toast.LENGTH_SHORT).show();
-                Intent addNote = new Intent(getApplicationContext(), AddNoteActivity.class);
-                startActivity(addNote);
+                String text = editText.getText().toString();
+
+                items item1 = new items("" + text, "", 0);
+                itemsViewModel.insert(item1);
+
             }
-        });*/
+        });
     }
-   /* public void open(){
-        fabLayout1.animate().translationY(-50);
-        fab.animate().rotationBy(135);
-        fabLayout1.animate().alpha(1).setDuration(500);
-    }
-    public void close(){
-        fabLayout1.animate().translationY(10);
-        fab.animate().rotationBy(-135);
-        fabLayout1.animate().alpha(0.0f).setDuration(500);
-    }*/
 }
