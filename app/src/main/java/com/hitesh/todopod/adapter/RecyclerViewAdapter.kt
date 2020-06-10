@@ -5,7 +5,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
-import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.hitesh.todopod.R
 import com.hitesh.todopod.adapter.RecyclerViewAdapter.MyViewHolder
@@ -20,20 +19,19 @@ class RecyclerViewAdapter(private val itemList: List<items>) : RecyclerView.Adap
     var context: Context? = null
 
     // Define the listener interface
-    interface OnItemClickListener {
-        fun onItemClick(itemView: View?, position: Int)
+    public interface OnItemClickListener {
+        fun onItemClick(items: items)
     }
 
     // Define the method that allows the parent activity or fragment to define the listener
-    fun setOnItemClickListener(listener: OnItemClickListener?) {
+    fun setOnItemClickListener(listener: OnItemClickListener) {
         this.listener = listener
     }
 
-    inner class MyViewHolder(view: View) : RecyclerView.ViewHolder(view), View.OnClickListener {
+    inner class MyViewHolder(view: View) : RecyclerView.ViewHolder(view){
         var title: TextView
         var title2: TextView
         var title3: TextView
-        override fun onClick(v: View) {}
 
         init {
             title = view.findViewById<View>(R.id.title) as TextView
@@ -42,12 +40,14 @@ class RecyclerViewAdapter(private val itemList: List<items>) : RecyclerView.Adap
             view.setOnClickListener { // Triggers click upwards to the adapter on click
                 if (listener != null) {
                     val position = adapterPosition
-                    if (position != RecyclerView.NO_POSITION) {
-                        listener?.onItemClick(itemView, position)
+                    if (listener != null && position != RecyclerView.NO_POSITION){
+                        listener?.onItemClick(items.get(position))
                     }
                 }
             }
+
         }
+
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
