@@ -18,6 +18,7 @@ import com.hitesh.todopod.ItemsViewModel
 import com.hitesh.todopod.R
 import com.hitesh.todopod.adapter.RecyclerViewAdapter
 import com.hitesh.todopod.items
+import kotlinx.android.synthetic.main.activity_edit_note.*
 import kotlinx.android.synthetic.main.activity_main.*
 import java.util.*
 
@@ -55,9 +56,17 @@ class MainActivity : AppCompatActivity() {
         val button = findViewById<Button>(R.id.button)
 
 
+
         mAdapter?.setOnItemClickListener(object : RecyclerViewAdapter.OnItemClickListener {
             override fun onItemClick(items: items) {
-               Toast.makeText(applicationContext, items.title, Toast.LENGTH_SHORT).show()
+                var editNoteActivity: Intent? = Intent(applicationContext, EditNoteActivity::class.java)
+                var title: String? = items.title
+                editNoteActivity?.putExtra("keytitle", title)
+                //editNoteActivity?.putExtra("keydescription", description)
+                //editNoteActivity?.putExtra("keyorder", order)
+                startActivity(editNoteActivity)
+                itemsViewModel?.delete(items)
+              // Toast.makeText(applicationContext, items.title, Toast.LENGTH_SHORT).show()
             }
         })
 

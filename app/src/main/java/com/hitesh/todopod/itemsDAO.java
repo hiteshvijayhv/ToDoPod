@@ -15,13 +15,13 @@ import java.util.List;
 public interface itemsDAO {
 
     @Insert
-    void insert(items note);
+    void insert(items items);
 
     @Update
-    void update(items note);
+    void update(items items);
 
     @Delete
-    void delete(items note);
+    void delete(items items);
 
     @Query("DELETE FROM note_table")
     void deleteAllNotes();

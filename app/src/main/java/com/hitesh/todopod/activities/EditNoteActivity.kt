@@ -8,6 +8,7 @@ import android.view.Menu
 import android.view.MenuItem
 import android.view.View
 import android.widget.EditText
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import com.hitesh.todopod.ItemsViewModel
@@ -25,16 +26,22 @@ class EditNoteActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_edit_note)
         editNote = findViewById<View>(R.id.editNote) as EditText
-        editNote?.setText(intent.getStringExtra("text"))
-        val intent = intent
-        note = intent.getStringExtra("text")
+
+        var intent: Intent = intent
+        note = intent.getStringExtra("keytitle")
+        editNote?.setText(intent.getStringExtra("keytitle"))
+
+        val input = items("" + note, "", 0)
+        itemsViewModel?.update(input)
 
         itemsViewModel = ViewModelProvider(this,
                 ViewModelProvider.AndroidViewModelFactory(application))
                 .get(ItemsViewModel::class.java)
 
         editNote?.addTextChangedListener(object : TextWatcher {
-            override fun beforeTextChanged(s: CharSequence, start: Int, count: Int, after: Int) {}
+            override fun beforeTextChanged(s: CharSequence, start: Int, count: Int, after: Int) {
+
+            }
             override fun onTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {
                 deleteNote()
             }
@@ -50,8 +57,8 @@ class EditNoteActivity : AppCompatActivity() {
             val editedNote = items("" + newNote, "", 0)
            itemsViewModel?.insert(editedNote)
         }
-        val MainActivity = Intent(applicationContext, MainActivity::class.java)
-        startActivity(MainActivity)
+        val mainActivity = Intent(applicationContext, MainActivity::class.java)
+        startActivity(mainActivity)
         super.onBackPressed()
     }
 
@@ -73,7 +80,7 @@ class EditNoteActivity : AppCompatActivity() {
     }
 
     private fun deleteNote(){
-        val input = items("" + note, "", 0)
+        var input = items("hitesh", "", 0)
         itemsViewModel?.delete(input)
     }
 }
