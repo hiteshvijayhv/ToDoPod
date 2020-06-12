@@ -13,9 +13,7 @@ import com.hitesh.todopod.items
 
 class RecyclerViewAdapter(private val itemList: List<items>) : RecyclerView.Adapter<MyViewHolder>() {
     private var listener: OnItemClickListener? = null
-
     private var items: List<items> = ArrayList()
-
     var context: Context? = null
 
     // Define the listener interface
@@ -45,7 +43,6 @@ class RecyclerViewAdapter(private val itemList: List<items>) : RecyclerView.Adap
                     }
                 }
             }
-
         }
 
     }
@@ -64,8 +61,6 @@ class RecyclerViewAdapter(private val itemList: List<items>) : RecyclerView.Adap
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
         val items = items[position]
         holder.title.text = items.title
-        //holder.title2.text = items.genre
-        //holder.title3.text = items.year
     }
 
     override fun getItemCount(): Int {

@@ -14,11 +14,10 @@ import androidx.lifecycle.ViewModelProvider.AndroidViewModelFactory
 import androidx.recyclerview.widget.DefaultItemAnimator
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.hitesh.todopod.ItemsViewModel
+import com.hitesh.todopod.model.ItemsViewModel
 import com.hitesh.todopod.R
 import com.hitesh.todopod.adapter.RecyclerViewAdapter
 import com.hitesh.todopod.items
-import kotlinx.android.synthetic.main.activity_edit_note.*
 import kotlinx.android.synthetic.main.activity_main.*
 import java.util.*
 

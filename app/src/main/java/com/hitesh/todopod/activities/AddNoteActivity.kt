@@ -7,8 +7,7 @@ import android.widget.Button
 import android.widget.EditText
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
-import com.hitesh.todopod.ItemsViewModel
-import com.hitesh.todopod.helper.DatabaseHelper
+import com.hitesh.todopod.model.ItemsViewModel
 import com.hitesh.todopod.R
 import com.hitesh.todopod.items
 

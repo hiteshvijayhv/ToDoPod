@@ -8,11 +8,9 @@ import android.view.Menu
 import android.view.MenuItem
 import android.view.View
 import android.widget.EditText
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
-import com.hitesh.todopod.ItemsViewModel
-import com.hitesh.todopod.helper.DatabaseHelper
+import com.hitesh.todopod.model.ItemsViewModel
 import com.hitesh.todopod.R
 import com.hitesh.todopod.items
 

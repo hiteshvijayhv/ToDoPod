@@ -1,10 +1,13 @@
-package com.hitesh.todopod;
+package com.hitesh.todopod.model;
 
 import android.app.Application;
 
 import androidx.annotation.NonNull;
 import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LiveData;
+
+import com.hitesh.todopod.items;
+import com.hitesh.todopod.itemsRepository;
 
 import java.util.List;
 
