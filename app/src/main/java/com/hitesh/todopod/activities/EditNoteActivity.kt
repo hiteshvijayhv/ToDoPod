@@ -41,6 +41,8 @@ class EditNoteActivity : AppCompatActivity() {
                 ViewModelProvider.AndroidViewModelFactory(application))
                 .get(ItemsViewModel::class.java)
 
+        newNote = editNote?.text.toString()
+
         editNote?.addTextChangedListener(object : TextWatcher {
             override fun beforeTextChanged(s: CharSequence, start: Int, count: Int, after: Int) {
 
