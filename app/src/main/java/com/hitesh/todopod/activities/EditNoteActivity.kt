@@ -14,6 +14,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import com.hitesh.todopod.R
 import com.hitesh.todopod.items
+import com.hitesh.todopod.model.DateModel
 import com.hitesh.todopod.model.ItemsViewModel
 
 class EditNoteActivity : AppCompatActivity() {
@@ -23,6 +24,7 @@ class EditNoteActivity : AppCompatActivity() {
     var statsButton: ImageButton? = null
 
     var itemsViewModel: ItemsViewModel? = null
+    var dateModel: DateModel? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -40,6 +42,10 @@ class EditNoteActivity : AppCompatActivity() {
         itemsViewModel = ViewModelProvider(this,
                 ViewModelProvider.AndroidViewModelFactory(application))
                 .get(ItemsViewModel::class.java)
+
+        dateModel = ViewModelProvider(this,
+                ViewModelProvider.AndroidViewModelFactory(application))
+                .get(DateModel::class.java)
 
         newNote = editNote?.text.toString()
 
@@ -68,7 +74,7 @@ class EditNoteActivity : AppCompatActivity() {
 
     override fun onBackPressed() {
         if (newNote != null) {
-            val editedNote = items("" + newNote, "", 0)
+            val editedNote = items("" + newNote, "${dateModel?.formatedDate}", 0)
            itemsViewModel?.insert(editedNote)
         }
         val mainActivity = Intent(applicationContext, MainActivity::class.java)
