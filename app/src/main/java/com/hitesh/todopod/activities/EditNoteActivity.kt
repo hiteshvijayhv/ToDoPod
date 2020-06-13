@@ -1,5 +1,6 @@
 package com.hitesh.todopod.activities
 
+import android.app.AlertDialog
 import android.content.Intent
 import android.os.Bundle
 import android.text.Editable
@@ -8,22 +9,26 @@ import android.view.Menu
 import android.view.MenuItem
 import android.view.View
 import android.widget.EditText
+import android.widget.ImageButton
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
-import com.hitesh.todopod.model.ItemsViewModel
 import com.hitesh.todopod.R
 import com.hitesh.todopod.items
+import com.hitesh.todopod.model.ItemsViewModel
 
 class EditNoteActivity : AppCompatActivity() {
     var editNote: EditText? = null
     var note: String? = null
     var newNote: String? = null
+    var statsButton: ImageButton? = null
+
     var itemsViewModel: ItemsViewModel? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_edit_note)
         editNote = findViewById<View>(R.id.editNote) as EditText
+        statsButton = findViewById(R.id.statsButton)
 
         var intent: Intent = intent
         note = intent.getStringExtra("keytitle")
@@ -48,6 +53,15 @@ class EditNoteActivity : AppCompatActivity() {
                 newNote = editNote?.text.toString()
             }
         })
+    }
+
+    fun showStats(view: View){
+        var textLength = editNote?.text?.length
+        val builder: AlertDialog.Builder = AlertDialog.Builder(this)
+        builder.setTitle("Statistics")
+        builder.setMessage("Characters(with spaces) $textLength")
+        val alertDialog = builder.create()
+        alertDialog.show()
     }
 
     override fun onBackPressed() {
