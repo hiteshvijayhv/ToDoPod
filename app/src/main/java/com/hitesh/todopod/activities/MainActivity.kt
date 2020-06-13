@@ -61,11 +61,8 @@ class MainActivity : AppCompatActivity() {
                 var editNoteActivity: Intent? = Intent(applicationContext, EditNoteActivity::class.java)
                 var title: String? = items.title
                 editNoteActivity?.putExtra("keytitle", title)
-                //editNoteActivity?.putExtra("keydescription", description)
-                //editNoteActivity?.putExtra("keyorder", order)
                 startActivity(editNoteActivity)
                 itemsViewModel?.delete(items)
-              // Toast.makeText(applicationContext, items.title, Toast.LENGTH_SHORT).show()
             }
         })
 

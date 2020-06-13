@@ -61,6 +61,7 @@ class RecyclerViewAdapter(private val itemList: List<items>) : RecyclerView.Adap
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
         val items = items[position]
         holder.title.text = items.title
+        holder.title2.text = items.description
     }
 
     override fun getItemCount(): Int {
