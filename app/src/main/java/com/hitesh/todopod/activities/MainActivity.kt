@@ -14,16 +14,15 @@ import androidx.lifecycle.ViewModelProvider.AndroidViewModelFactory
 import androidx.recyclerview.widget.DefaultItemAnimator
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.hitesh.todopod.model.ItemsViewModel
 import com.hitesh.todopod.R
 import com.hitesh.todopod.adapter.RecyclerViewAdapter
 import com.hitesh.todopod.items
+import com.hitesh.todopod.model.ItemsViewModel
 import kotlinx.android.synthetic.main.activity_main.*
 import java.util.*
 
 
 class MainActivity : AppCompatActivity() {
-
     private val itemsList: List<items> = ArrayList()
     private var recyclerView: RecyclerView? = null
     private var mAdapter: RecyclerViewAdapter? = null
@@ -88,6 +87,7 @@ class MainActivity : AppCompatActivity() {
             val addNote = Intent(applicationContext, AddNoteActivity::class.java)
             startActivity(addNote)
         }
+
     }
     fun open() {
         fabLayout1!!.animate().translationY(-50f)

@@ -20,6 +20,20 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <ImageButton
+        android:id="@+id/shareButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="280dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="6dp"
+        android:onClick="shareNote"
+        android:background="@drawable/ic_share_black_24dp"
+        app:layout_constraintBottom_toTopOf="@+id/editNote"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
     <EditText
         android:id="@+id/editNote"
         android:layout_width="0dp"

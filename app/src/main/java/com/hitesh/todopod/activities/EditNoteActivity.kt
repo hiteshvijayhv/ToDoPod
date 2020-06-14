@@ -82,6 +82,16 @@ class EditNoteActivity : AppCompatActivity() {
         super.onBackPressed()
     }
 
+    fun shareNote(view: View){
+        val myIntent = Intent(Intent.ACTION_SEND)
+        myIntent.type = "text/plain"
+        val shareBody = "Share Note"
+        val shareSub = ""
+        myIntent.putExtra(Intent.EXTRA_SUBJECT, shareBody)
+        myIntent.putExtra(Intent.EXTRA_TEXT, shareBody)
+        startActivity(Intent.createChooser(myIntent, "Share using"))
+    }
+
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
         menuInflater.inflate(R.menu.edit_note_menu, menu)
         return true
