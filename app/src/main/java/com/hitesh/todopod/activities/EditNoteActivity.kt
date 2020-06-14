@@ -74,7 +74,7 @@ class EditNoteActivity : AppCompatActivity() {
 
     override fun onBackPressed() {
         if (newNote != null) {
-            val editedNote = items("" + newNote, "${dateModel?.formatedDate}", 0)
+            val editedNote = items("" + newNote, "${dateModel?.date()}", 0)
            itemsViewModel?.insert(editedNote)
         }
         val mainActivity = Intent(applicationContext, MainActivity::class.java)

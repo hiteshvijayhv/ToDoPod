@@ -100,5 +100,4 @@ class MainActivity : AppCompatActivity() {
         fab.animate().rotationBy(-135f)
         fabLayout1!!.animate().alpha(0.0f).duration = 500
     }
-
 }

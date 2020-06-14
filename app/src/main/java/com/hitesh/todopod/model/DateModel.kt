@@ -5,7 +5,9 @@ import java.text.SimpleDateFormat
 import java.util.*
 
 class DateModel : ViewModel() {
-    val date = Calendar.getInstance().time
-    val formatter = SimpleDateFormat.getDateTimeInstance() //or use getDateInstance()
-    val formatedDate = formatter.format(date)
+    fun date(): String{
+        val date = Calendar.getInstance().time
+        val formatter = SimpleDateFormat.getDateTimeInstance() //or use getDateInstance()
+        return formatter.format(date)
+    }
 }
