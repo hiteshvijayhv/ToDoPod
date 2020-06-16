@@ -11,7 +11,6 @@ import com.hitesh.todopod.R
 import com.hitesh.todopod.items
 import com.hitesh.todopod.model.DateModel
 import com.hitesh.todopod.model.ItemsViewModel
-import java.util.*
 
 class AddNoteActivity : AppCompatActivity() {
     var editText: EditText? = null
