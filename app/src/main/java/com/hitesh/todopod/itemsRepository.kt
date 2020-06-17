@@ -3,6 +3,10 @@ package com.hitesh.todopod
 import android.app.Application
 import android.os.AsyncTask
 import androidx.lifecycle.LiveData
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers.IO
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 
 class itemsRepository {
     var itemsDao: itemsDAO
@@ -15,74 +19,69 @@ class itemsRepository {
     }
 
     fun insert(items: items?) {
-        val insertTask = InsertitemsAsyncTask(itemsDao)
-        insertTask?.execute(items)
-    }
+        insertItemCoroutine(itemsDao, items) }
 
     fun update(items: items?) {
-        val update = itemsDao?.let { UpdateitemsAsyncTask(it) }
-                update?.execute(items)
+        updateItemCoroutine(itemsDao, items)
     }
 
     fun delete(items: items?) {
-        val delete = itemsDao?.let { DeleteitemsAsyncTask(it) }
-                delete?.execute(items)
+        DeleteItemsCoroutine(itemsDao, items)
     }
 
     fun deleteAllitemss() {
-       val deleteAll = itemsDao?.let { DeleteAllitemssAsyncTask(it) }
-               deleteAll?.execute()
+       DeleteAllItemsCoroutine(itemsDao)
     }
 
-    private class InsertitemsAsyncTask(itemsDao: itemsDAO) : AsyncTask<items?, Void?, Void?>() {
-        private var itemsDao: itemsDAO? = null
-        init {
-            this.itemsDao = itemsDao
-        }
-
-        override fun doInBackground(vararg itemss: items?): Void? {
+    fun insertItemCoroutine(itemsDao: itemsDAO?, itemss: items?){
+      val itemsDao: itemsDAO? = null
+        if (itemsDao != null) this.itemsDao = itemsDao
+        
+        CoroutineScope(IO).launch { insertItem(itemss) }
+    }
+    suspend fun insertItem(vararg itemss: items?): Void?{
+        withContext(IO){
             itemsDao?.insert(itemss[0])
-            return null
         }
-
+        return null
     }
 
-    private class UpdateitemsAsyncTask(itemsDao: itemsDAO) : AsyncTask<items?, Void?, Void?>() {
-        private var itemsDao: itemsDAO? = null
+    fun updateItemCoroutine(itemsDao: itemsDAO?, itemss: items?){
+        val itemsDao: itemsDAO? = null
+        if (itemsDao != null) this.itemsDao = itemsDao
 
-        init {
-            this.itemsDao = itemsDao
-        }
-
-        override fun doInBackground(vararg itemss: items?): Void? {
+        CoroutineScope(IO).launch { updateItem(itemss) }
+    }
+    suspend fun updateItem(vararg itemss: items?): Void?{
+        withContext(IO){
             itemsDao?.update(itemss[0])
-            return null
         }
+        return null
     }
 
-    private class DeleteitemsAsyncTask(itemsDao: itemsDAO) : AsyncTask<items?, Void?, Void?>() {
-        private var itemsDao: itemsDAO? = null
+    fun DeleteItemsCoroutine(itemsDao: itemsDAO?, itemss: items?){
+        val itemsDao: itemsDAO? = null
+        if (itemsDao != null) this.itemsDao = itemsDao
 
-        init {
-            this.itemsDao = itemsDao
-        }
-
-        override fun doInBackground(vararg itemss: items?): Void? {
+        CoroutineScope(IO).launch { deleteItem(itemss) }
+    }
+    suspend fun deleteItem(vararg itemss: items?): Void?{
+        withContext(IO){
             itemsDao?.delete(itemss[0])
-            return null
         }
+        return null
     }
 
-    private class DeleteAllitemssAsyncTask(itemsDao: itemsDAO) : AsyncTask<items?, Void?, Void?>() {
-        private var itemsDao: itemsDAO? = null
+    fun DeleteAllItemsCoroutine(itemsDao: itemsDAO?){
+        val itemsDao: itemsDAO? = null
+        if (itemsDao != null) this.itemsDao = itemsDao
 
-        init {
-            this.itemsDao = itemsDao
-        }
-
-        override fun doInBackground(vararg itemss: items?): Void? {
+        CoroutineScope(IO).launch { deleteAllItem() }
+    }
+    suspend fun deleteAllItem(vararg itemss: items?): Void?{
+        withContext(IO){
             itemsDao?.deleteAllNotes()
-            return null
         }
+        return null
     }
 }
