@@ -74,10 +74,10 @@ class MainActivity : AppCompatActivity() {
             if(!isFABOpen){
                 open();
                 fabLayout1?.setVisibility(View.VISIBLE);
-                isFABOpen = true;
+                isFABOpen = true
             } else {
-                close();
-                isFABOpen = false;
+                close()
+                isFABOpen = false
             }
             Toast.makeText(applicationContext, "Clicked", Toast.LENGTH_SHORT).show()
         }
