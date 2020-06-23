@@ -79,11 +79,9 @@ class MainActivity : AppCompatActivity() {
                 close()
                 isFABOpen = false
             }
-            Toast.makeText(applicationContext, "Clicked", Toast.LENGTH_SHORT).show()
         }
 
         fab1.setOnClickListener {
-            Toast.makeText(applicationContext, "clicked", Toast.LENGTH_SHORT).show()
             val addNote = Intent(applicationContext, AddNoteActivity::class.java)
             startActivity(addNote)
         }
