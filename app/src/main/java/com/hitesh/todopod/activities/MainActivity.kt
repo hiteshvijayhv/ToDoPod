@@ -50,11 +50,6 @@ class MainActivity : AppCompatActivity() {
 
         itemsViewModel?.allitemss?.observe(this, Observer { items -> mAdapter?.setNotes(items!!) })
 
-        val editText = findViewById<EditText>(R.id.editText)
-        val button = findViewById<Button>(R.id.button)
-
-
-
         mAdapter?.setOnItemClickListener(object : RecyclerViewAdapter.OnItemClickListener {
             override fun onItemClick(items: items) {
                 var editNoteActivity: Intent? = Intent(applicationContext, EditNoteActivity::class.java)
@@ -65,11 +60,6 @@ class MainActivity : AppCompatActivity() {
             }
         })
 
-        button.setOnClickListener {
-            val text = editText.text.toString()
-            val item1 = items("" + text, "", 0)
-            itemsViewModel?.insert(item1)
-        }
         fab.setOnClickListener{
             if(!isFABOpen){
                 open();
