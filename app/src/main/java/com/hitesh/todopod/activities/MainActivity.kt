@@ -29,13 +29,10 @@ class MainActivity : AppCompatActivity() {
     var itemsViewModel: ItemsViewModel? = null
 
     var isFABOpen = false
-    var fabLayout1: LinearLayout? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-
-        fabLayout1 = findViewById(R.id.fabLayout1)
 
         itemsViewModel = ViewModelProvider(this,
                 AndroidViewModelFactory(application))
@@ -63,7 +60,7 @@ class MainActivity : AppCompatActivity() {
         fab.setOnClickListener{
             if(!isFABOpen){
                 open();
-                fabLayout1?.setVisibility(View.VISIBLE);
+                fabLayout1.setVisibility(View.VISIBLE)
                 isFABOpen = true
             } else {
                 close()
@@ -77,15 +74,16 @@ class MainActivity : AppCompatActivity() {
         }
 
     }
+
     fun open() {
-        fabLayout1!!.animate().translationY(-50f)
+        fabLayout1.animate().translationY(-50f)
         fab.animate().rotationBy(135f)
-        fabLayout1!!.animate().alpha(1f).duration = 500
+        fabLayout1.animate().alpha(1f).duration = 500
     }
 
     fun close() {
-        fabLayout1!!.animate().translationY(10f)
+        fabLayout1.animate().translationY(10f)
         fab.animate().rotationBy(-135f)
-        fabLayout1!!.animate().alpha(0.0f).duration = 500
+        fabLayout1.animate().alpha(0.0f).duration = 500
     }
 }
