@@ -58,14 +58,8 @@ class MainActivity : AppCompatActivity() {
         })
 
         fab.setOnClickListener{
-            if(!isFABOpen){
-                open();
-                fabLayout1.setVisibility(View.VISIBLE)
-                isFABOpen = true
-            } else {
-                close()
-                isFABOpen = false
-            }
+            if(!isFABOpen) open()
+            else close()
         }
 
         fab1.setOnClickListener {
@@ -79,11 +73,16 @@ class MainActivity : AppCompatActivity() {
         fabLayout1.animate().translationY(-50f)
         fab.animate().rotationBy(135f)
         fabLayout1.animate().alpha(1f).duration = 500
+
+        fabLayout1.setVisibility(View.VISIBLE)
+        isFABOpen = true
     }
 
     fun close() {
         fabLayout1.animate().translationY(10f)
         fab.animate().rotationBy(-135f)
         fabLayout1.animate().alpha(0.0f).duration = 500
+
+        isFABOpen = false
     }
 }
