@@ -8,16 +8,18 @@ import android.widget.EditText
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import com.hitesh.todopod.R
+import com.hitesh.todopod.component.DaggerDateComponent
 import com.hitesh.todopod.items
 import com.hitesh.todopod.model.DateModel
 import com.hitesh.todopod.model.ItemsViewModel
+import javax.inject.Inject
 
 class AddNoteActivity : AppCompatActivity() {
     var editText: EditText? = null
     var saveButton: Button? = null
     var userInput: String? = null
     var itemsViewModel: ItemsViewModel? = null
-    var dateModel: DateModel = DateModel()
+    @Inject lateinit var dateModel: DateModel
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_add_note)
@@ -26,6 +28,9 @@ class AddNoteActivity : AppCompatActivity() {
         itemsViewModel = ViewModelProvider(this,
                 ViewModelProvider.AndroidViewModelFactory(application))
                 .get(ItemsViewModel::class.java)
+
+        var dateModelComponent = DaggerDateComponent.create()
+        dateModelComponent.inject(this)
 
     }
 

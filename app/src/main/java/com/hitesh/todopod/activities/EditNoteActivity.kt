@@ -13,9 +13,11 @@ import android.widget.ImageButton
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import com.hitesh.todopod.R
+import com.hitesh.todopod.component.DaggerDateComponent
 import com.hitesh.todopod.items
 import com.hitesh.todopod.model.DateModel
 import com.hitesh.todopod.model.ItemsViewModel
+import javax.inject.Inject
 
 class EditNoteActivity : AppCompatActivity() {
     var editNote: EditText? = null
@@ -24,7 +26,7 @@ class EditNoteActivity : AppCompatActivity() {
     var statsButton: ImageButton? = null
 
     var itemsViewModel: ItemsViewModel? = null
-    var dateModel: DateModel = DateModel()
+    @Inject lateinit var dateModel: DateModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -42,6 +44,9 @@ class EditNoteActivity : AppCompatActivity() {
         itemsViewModel = ViewModelProvider(this,
                 ViewModelProvider.AndroidViewModelFactory(application))
                 .get(ItemsViewModel::class.java)
+
+        var dateModelComponent = DaggerDateComponent.create()
+        dateModelComponent.inject(this)
 
         newNote = editNote?.text.toString()
 
