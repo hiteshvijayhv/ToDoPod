@@ -24,7 +24,7 @@ class EditNoteActivity : AppCompatActivity() {
     var statsButton: ImageButton? = null
 
     var itemsViewModel: ItemsViewModel? = null
-    var dateModel: DateModel? = null
+    var dateModel: DateModel = DateModel()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -42,10 +42,6 @@ class EditNoteActivity : AppCompatActivity() {
         itemsViewModel = ViewModelProvider(this,
                 ViewModelProvider.AndroidViewModelFactory(application))
                 .get(ItemsViewModel::class.java)
-
-        dateModel = ViewModelProvider(this,
-                ViewModelProvider.AndroidViewModelFactory(application))
-                .get(DateModel::class.java)
 
         newNote = editNote?.text.toString()
 

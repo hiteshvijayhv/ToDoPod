@@ -17,7 +17,7 @@ class AddNoteActivity : AppCompatActivity() {
     var saveButton: Button? = null
     var userInput: String? = null
     var itemsViewModel: ItemsViewModel? = null
-    var dateModel: DateModel? = null
+    var dateModel: DateModel = DateModel()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_add_note)
@@ -27,9 +27,6 @@ class AddNoteActivity : AppCompatActivity() {
                 ViewModelProvider.AndroidViewModelFactory(application))
                 .get(ItemsViewModel::class.java)
 
-        dateModel = ViewModelProvider(this,
-                ViewModelProvider.AndroidViewModelFactory(application))
-                .get(DateModel::class.java)
     }
 
     fun saveNote(view: View?) {
