@@ -9,42 +9,28 @@ import androidx.recyclerview.widget.RecyclerView
 import com.hitesh.todopod.R
 import com.hitesh.todopod.adapter.RecyclerViewAdapter.MyViewHolder
 import com.hitesh.todopod.items
+import kotlinx.android.synthetic.main.recycler_layout.view.*
 
 
 class RecyclerViewAdapter(private val itemList: List<items>) : RecyclerView.Adapter<MyViewHolder>() {
     private var listener: OnItemClickListener? = null
     private var items: List<items> = ArrayList()
-    var context: Context? = null
-
-    // Define the listener interface
-    public interface OnItemClickListener {
-        fun onItemClick(items: items)
-    }
-
-    // Define the method that allows the parent activity or fragment to define the listener
-    fun setOnItemClickListener(listener: OnItemClickListener) {
-        this.listener = listener
-    }
 
     inner class MyViewHolder(view: View) : RecyclerView.ViewHolder(view){
-        var title: TextView
-        var title2: TextView
-        var title3: TextView
+        var title: TextView = view.title
+        var title2: TextView = view.title2
+        var title3: TextView = view.title3
 
         init {
-            title = view.findViewById<View>(R.id.title) as TextView
-            title2 = view.findViewById<View>(R.id.title2) as TextView
-            title3 = view.findViewById<View>(R.id.title3) as TextView
-            view.setOnClickListener { // Triggers click upwards to the adapter on click
+            view.setOnClickListener {
                 if (listener != null) {
                     val position = adapterPosition
-                    if (listener != null && position != RecyclerView.NO_POSITION){
+                    if (listener != null && position != RecyclerView.NO_POSITION) {
                         listener?.onItemClick(items.get(position))
                     }
                 }
             }
         }
-
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
@@ -53,10 +39,6 @@ class RecyclerViewAdapter(private val itemList: List<items>) : RecyclerView.Adap
                 .inflate(R.layout.recycler_layout, parent, false)
         return MyViewHolder(itemView)
     }
-    fun setNotes(items: List<items?>) {
-        this.items = items as List<items>
-        notifyDataSetChanged()
-    }
 
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
         val items = items[position]
@@ -64,7 +46,22 @@ class RecyclerViewAdapter(private val itemList: List<items>) : RecyclerView.Adap
         holder.title2.text = items.description
     }
 
+    fun setNotes(items: List<items?>) {
+        this.items = items as List<items>
+        notifyDataSetChanged()
+    }
+
     override fun getItemCount(): Int {
         return items.size
+    }
+
+    // Define the listener interface
+    interface OnItemClickListener {
+        fun onItemClick(items: items)
+    }
+
+    // Define the method that allows the parent activity or fragment to define the listener
+    fun setOnItemClickListener(listener: OnItemClickListener) {
+        this.listener = listener
     }
 }
