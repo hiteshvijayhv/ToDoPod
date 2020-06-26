@@ -35,7 +35,7 @@ class AddNoteActivity : AppCompatActivity() {
 
     fun saveNote(view: View?) {
         userInput = editText?.text.toString()
-        val input = items("" + userInput, "${dateModel?.date()}", 0)
+        val input = items(userInput, dateModel.date(), 0)
         itemsViewModel?.insert(input)
         val mainActivity = Intent(applicationContext, MainActivity::class.java)
         startActivity(mainActivity)
