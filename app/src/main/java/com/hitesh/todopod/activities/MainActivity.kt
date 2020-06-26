@@ -24,7 +24,6 @@ import java.util.*
 
 class MainActivity : AppCompatActivity() {
     private val itemsList: List<items> = ArrayList()
-    private var recyclerView: RecyclerView? = null
     private var mAdapter: RecyclerViewAdapter? = null
     var itemsViewModel: ItemsViewModel? = null
 
@@ -38,12 +37,12 @@ class MainActivity : AppCompatActivity() {
                 AndroidViewModelFactory(application))
                 .get(ItemsViewModel::class.java)
 
-        recyclerView = findViewById<View>(R.id.recycler_view) as RecyclerView
+
         mAdapter = RecyclerViewAdapter(itemsList)
         val mLayoutManager: RecyclerView.LayoutManager = LinearLayoutManager(applicationContext)
-        recyclerView?.layoutManager = mLayoutManager
-        recyclerView?.itemAnimator = DefaultItemAnimator()
-        recyclerView?.adapter = mAdapter
+        recycler_view?.layoutManager = mLayoutManager
+        recycler_view?.itemAnimator = DefaultItemAnimator()
+        recycler_view?.adapter = mAdapter
 
         itemsViewModel?.allitemss?.observe(this, Observer { items -> mAdapter?.setNotes(items!!) })
 
