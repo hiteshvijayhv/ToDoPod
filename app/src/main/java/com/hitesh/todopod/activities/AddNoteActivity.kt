@@ -18,6 +18,8 @@ import javax.inject.Inject
 class AddNoteActivity : AppCompatActivity() {
     var saveButton: Button? = null
     var userInput: String? = null
+    var headerInput: String? = null
+
     var itemsViewModel: ItemsViewModel? = null
     @Inject lateinit var dateModel: DateModel
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -34,8 +36,9 @@ class AddNoteActivity : AppCompatActivity() {
     }
 
     fun saveNote(view: View?) {
+        headerInput = headerText?.text.toString()
         userInput = editText?.text.toString()
-        val input = items(userInput, dateModel.date(), 0)
+        val input = items(userInput, headerInput, 0)
         itemsViewModel?.insert(input)
         val mainActivity = Intent(applicationContext, MainActivity::class.java)
         startActivity(mainActivity)

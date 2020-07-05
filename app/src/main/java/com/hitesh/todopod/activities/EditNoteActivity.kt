@@ -10,6 +10,7 @@ import android.view.MenuItem
 import android.view.View
 import android.widget.EditText
 import android.widget.ImageButton
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import com.hitesh.todopod.R
@@ -17,13 +18,20 @@ import com.hitesh.todopod.component.DaggerDateComponent
 import com.hitesh.todopod.items
 import com.hitesh.todopod.model.DateModel
 import com.hitesh.todopod.model.ItemsViewModel
+import kotlinx.android.synthetic.main.activity_edit_note.*
 import javax.inject.Inject
 
 class EditNoteActivity : AppCompatActivity() {
     var editNote: EditText? = null
+    var headerText: EditText? = null
     var note: String? = null
+    var header: String? = null
     var newNote: String? = null
+
+    var newHeader: String? = null
+
     var statsButton: ImageButton? = null
+
 
     var itemsViewModel: ItemsViewModel? = null
     @Inject lateinit var dateModel: DateModel
@@ -32,14 +40,21 @@ class EditNoteActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_edit_note)
         editNote = findViewById<View>(R.id.editNote) as EditText
+        headerText = findViewById<View>(R.id.headerEditText) as EditText
+
         statsButton = findViewById(R.id.statsButton)
 
         var intent: Intent = intent
         note = intent.getStringExtra("keytitle")
-        editNote?.setText(intent.getStringExtra("keytitle"))
+        header = intent.getStringExtra("headertitle")
 
-        val input = items("" + note, "", 0)
+        editNote?.setText(intent.getStringExtra("keytitle"))
+        headerText?.setText(header)
+
+        val input = items(note, newHeader, 0)
         itemsViewModel?.update(input)
+        Toast.makeText(applicationContext, newHeader, Toast.LENGTH_SHORT).show()
+
 
         itemsViewModel = ViewModelProvider(this,
                 ViewModelProvider.AndroidViewModelFactory(application))
@@ -49,6 +64,7 @@ class EditNoteActivity : AppCompatActivity() {
         dateModelComponent.inject(this)
 
         newNote = editNote?.text.toString()
+        newHeader = headerText?.text.toString()
 
         editNote?.addTextChangedListener(object : TextWatcher {
             override fun beforeTextChanged(s: CharSequence, start: Int, count: Int, after: Int) {
@@ -62,6 +78,19 @@ class EditNoteActivity : AppCompatActivity() {
                 newNote = editNote?.text.toString()
             }
         })
+
+        headerText?.addTextChangedListener(object : TextWatcher{
+            override fun afterTextChanged(s: Editable?) {
+            }
+
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
+            }
+
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+                newHeader = headerText?.text.toString()
+            }
+
+        })
     }
 
     fun showStats(view: View){
@@ -74,9 +103,10 @@ class EditNoteActivity : AppCompatActivity() {
     }
 
     override fun onBackPressed() {
-        if (newNote != null) {
-            val editedNote = items("" + newNote, "${dateModel?.date()}", 0)
-           itemsViewModel?.insert(editedNote)
+        if (newNote != null && newHeader != null) {
+            val editedNote = items(newNote, newHeader, 0)
+            Toast.makeText(applicationContext, newHeader, Toast.LENGTH_SHORT).show()
+            itemsViewModel?.insert(editedNote)
         }
         val mainActivity = Intent(applicationContext, MainActivity::class.java)
         startActivity(mainActivity)
@@ -111,7 +141,7 @@ class EditNoteActivity : AppCompatActivity() {
     }
 
     private fun deleteNote(){
-        var input = items("hitesh", "", 0)
+        var input = items("hitesh", newHeader , 0)
         itemsViewModel?.delete(input)
     }
 }

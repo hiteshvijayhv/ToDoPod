@@ -50,6 +50,8 @@ class MainActivity : AppCompatActivity() {
             override fun onItemClick(items: items) {
                 var editNoteActivity: Intent? = Intent(applicationContext, EditNoteActivity::class.java)
                 var title: String? = items.title
+                var header: String? = items.description
+                editNoteActivity?.putExtra("headertitle", header)
                 editNoteActivity?.putExtra("keytitle", title)
                 startActivity(editNoteActivity)
                 itemsViewModel?.delete(items)
