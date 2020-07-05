@@ -1,39 +1,32 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
+<androidx.cardview.widget.CardView
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+    android:layout_height="200px"
+    android:layout_margin="10dp"
     android:clickable="true"
     android:focusable="true"
     android:orientation="vertical"
-    android:paddingBottom="@dimen/row_padding_vertical"
-    android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/row_padding_vertical">
-
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="2dp"
-        android:background="#c0c0c0"/>
+    android:paddingBottom="@dimen/row_padding_vertical">
 
     <TextView
         android:id="@+id/title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/title2"
-        android:textColor="@color/title"
-        android:textSize="16dp"
-        android:textStyle="bold" />
-
-
-
-
+        android:layout_marginTop="30dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:textSize="16dp" />
 
     <TextView
         android:id="@+id/title2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignParentTop="true" />
+        android:layout_alignParentTop="true"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:textSize="24dp"
+        android:textStyle="bold"/>
 
     <TextView
         android:id="@+id/title3"
@@ -43,4 +36,4 @@
         android:textColor="@color/title2" />
 
 
-</RelativeLayout>
+</androidx.cardview.widget.CardView>
