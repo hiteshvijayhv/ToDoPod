@@ -1,12 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.cardview.widget.CardView
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="200px"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:card_view="http://schemas.android.com/tools"
     android:layout_margin="10dp"
     android:clickable="true"
     android:focusable="true"
     android:orientation="vertical"
+    app:cardCornerRadius="5dp"
+    card_view:cardBackgroundColor="#d5efd4"
+    card_view:cardElevation="10dp"
+    card_view:cardMaxElevation="10dp"
     android:paddingBottom="@dimen/row_padding_vertical">
 
     <TextView
