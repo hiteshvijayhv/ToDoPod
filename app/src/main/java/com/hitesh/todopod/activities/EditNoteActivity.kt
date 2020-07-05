@@ -53,7 +53,6 @@ class EditNoteActivity : AppCompatActivity() {
 
         val input = items(note, newHeader, 0)
         itemsViewModel?.update(input)
-        Toast.makeText(applicationContext, newHeader, Toast.LENGTH_SHORT).show()
 
 
         itemsViewModel = ViewModelProvider(this,
@@ -105,7 +104,6 @@ class EditNoteActivity : AppCompatActivity() {
     override fun onBackPressed() {
         if (newNote != null && newHeader != null) {
             val editedNote = items(newNote, newHeader, 0)
-            Toast.makeText(applicationContext, newHeader, Toast.LENGTH_SHORT).show()
             itemsViewModel?.insert(editedNote)
         }
         val mainActivity = Intent(applicationContext, MainActivity::class.java)
