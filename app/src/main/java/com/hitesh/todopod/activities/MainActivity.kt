@@ -51,8 +51,8 @@ class MainActivity : AppCompatActivity() {
                 var editNoteActivity: Intent? = Intent(applicationContext, EditNoteActivity::class.java)
                 var title: String? = items.title
                 var header: String? = items.description
-                editNoteActivity?.putExtra("headertitle", header)
-                editNoteActivity?.putExtra("keytitle", title)
+                editNoteActivity?.putExtra("headertitle", title)
+                editNoteActivity?.putExtra("keytitle", header)
                 startActivity(editNoteActivity)
                 itemsViewModel?.delete(items)
             }

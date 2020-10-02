@@ -7,6 +7,7 @@ import android.widget.Button
 import android.widget.EditText
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
+import com.google.android.material.textfield.TextInputEditText
 import com.hitesh.todopod.R
 import com.hitesh.todopod.component.DaggerDateComponent
 import com.hitesh.todopod.items
@@ -17,14 +18,20 @@ import javax.inject.Inject
 
 class AddNoteActivity : AppCompatActivity() {
     var saveButton: Button? = null
-    var userInput: String? = null
-    var headerInput: String? = null
+
+
+    private lateinit var editTitle: TextInputEditText
+    private lateinit var editNote: TextInputEditText
 
     var itemsViewModel: ItemsViewModel? = null
     @Inject lateinit var dateModel: DateModel
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_add_note)
+
+        editTitle = findViewById(R.id.editTitle)
+        editNote = findViewById(R.id.editNote)
+
         saveButton = findViewById<View>(R.id.saveButton) as Button
         itemsViewModel = ViewModelProvider(this,
                 ViewModelProvider.AndroidViewModelFactory(application))
@@ -36,9 +43,9 @@ class AddNoteActivity : AppCompatActivity() {
     }
 
     fun saveNote(view: View?) {
-        headerInput = headerText?.text.toString()
-        userInput = editText?.text.toString()
-        val input = items(userInput, headerInput, 0)
+        val title = editTitle.text.toString()
+        val note = editNote.text.toString()
+        val input = items(title, note, 0)
         itemsViewModel?.insert(input)
         val mainActivity = Intent(applicationContext, MainActivity::class.java)
         startActivity(mainActivity)

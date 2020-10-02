@@ -19,7 +19,6 @@ class RecyclerViewAdapter(private val itemList: List<items>) : RecyclerView.Adap
     inner class MyViewHolder(view: View) : RecyclerView.ViewHolder(view){
         var title: TextView = view.title
         var title2: TextView = view.title2
-        var title3: TextView = view.title3
 
         init {
             view.setOnClickListener {
