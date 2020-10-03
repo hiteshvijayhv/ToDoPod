@@ -15,7 +15,7 @@
         android:layout_marginBottom="50dp"
         android:background="@drawable/ic_show_chart_black_24dp"
         android:onClick="showStats"
-        app:layout_constraintBottom_toTopOf="@+id/editNote"
+        app:layout_constraintBottom_toTopOf="@+id/textInputLayout_editNote"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -29,35 +29,48 @@
         android:layout_marginBottom="50dp"
         android:background="@drawable/ic_share_black_24dp"
         android:onClick="shareNote"
-        app:layout_constraintBottom_toTopOf="@+id/editNote"
+        app:layout_constraintBottom_toTopOf="@+id/textInputLayout_editNote"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <EditText
-        android:id="@+id/editNote"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_marginTop="80dp"
-        android:ems="10"
-        android:gravity="top"
-        android:inputType="textMultiLine"
-        android:text=""
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
 
-    <EditText
-        android:id="@+id/headerEditText"
-        android:layout_width="0dp"
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/textInputLayout_headerEditText"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="36dp"
-        android:ems="10"
-        android:inputType="textPersonName"
-        android:hint="Title"
-        app:layout_constraintBottom_toTopOf="@+id/editNote"
+        android:layout_marginTop="24dp"
+        android:paddingLeft="16dp"
+        android:paddingRight="16dp"
+        app:errorEnabled="true"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/shareButton">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/headerEditText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Title"
+            android:inputType="textPersonName" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/textInputLayout_editNote"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingLeft="16dp"
+        android:paddingRight="16dp"
+        app:errorEnabled="true"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textInputLayout_headerEditText">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/editNote"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:hint="Description"
+            android:inputType="textMultiLine" />
+    </com.google.android.material.textfield.TextInputLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

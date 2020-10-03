@@ -8,22 +8,20 @@ import android.text.TextWatcher
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
-import android.widget.EditText
 import android.widget.ImageButton
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
+import com.google.android.material.textfield.TextInputEditText
 import com.hitesh.todopod.R
 import com.hitesh.todopod.component.DaggerDateComponent
 import com.hitesh.todopod.items
 import com.hitesh.todopod.model.DateModel
 import com.hitesh.todopod.model.ItemsViewModel
-import kotlinx.android.synthetic.main.activity_edit_note.*
 import javax.inject.Inject
 
 class EditNoteActivity : AppCompatActivity() {
-    var editNote: EditText? = null
-    var headerText: EditText? = null
+    private lateinit var editNote: TextInputEditText
+    private lateinit var headerText: TextInputEditText
     var note: String? = null
     var header: String? = null
     var newNote: String? = null
@@ -39,8 +37,8 @@ class EditNoteActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_edit_note)
-        editNote = findViewById<View>(R.id.editNote) as EditText
-        headerText = findViewById<View>(R.id.headerEditText) as EditText
+        editNote = findViewById(R.id.editNote)
+        headerText = findViewById(R.id.headerEditText)
 
         statsButton = findViewById(R.id.statsButton)
 
@@ -48,8 +46,8 @@ class EditNoteActivity : AppCompatActivity() {
         note = intent.getStringExtra("keytitle")
         header = intent.getStringExtra("headertitle")
 
-        editNote?.setText(intent.getStringExtra("keytitle"))
-        headerText?.setText(header)
+        editNote.setText(intent.getStringExtra("keytitle"))
+        headerText.setText(header)
 
         val input = items(note, newHeader, 0)
         itemsViewModel?.update(input)
@@ -62,10 +60,10 @@ class EditNoteActivity : AppCompatActivity() {
         var dateModelComponent = DaggerDateComponent.create()
         dateModelComponent.inject(this)
 
-        newNote = editNote?.text.toString()
-        newHeader = headerText?.text.toString()
+        newNote = editNote.text.toString()
+        newHeader = headerText.text.toString()
 
-        editNote?.addTextChangedListener(object : TextWatcher {
+        editNote.addTextChangedListener(object : TextWatcher {
             override fun beforeTextChanged(s: CharSequence, start: Int, count: Int, after: Int) {
 
             }
@@ -74,11 +72,11 @@ class EditNoteActivity : AppCompatActivity() {
             }
 
             override fun afterTextChanged(s: Editable) {
-                newNote = editNote?.text.toString()
+                newNote = editNote.text.toString()
             }
         })
 
-        headerText?.addTextChangedListener(object : TextWatcher{
+        headerText.addTextChangedListener(object : TextWatcher {
             override fun afterTextChanged(s: Editable?) {
             }
 
@@ -86,14 +84,14 @@ class EditNoteActivity : AppCompatActivity() {
             }
 
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
-                newHeader = headerText?.text.toString()
+                newHeader = headerText.text.toString()
             }
 
         })
     }
 
-    fun showStats(view: View){
-        var textLength = editNote?.text?.length
+    fun showStats(view: View) {
+        var textLength = editNote.text?.length
         val builder: AlertDialog.Builder = AlertDialog.Builder(this)
         builder.setTitle("Statistics")
         builder.setMessage("Characters(with spaces) $textLength")
@@ -111,7 +109,7 @@ class EditNoteActivity : AppCompatActivity() {
         super.onBackPressed()
     }
 
-    fun shareNote(view: View){
+    fun shareNote(view: View) {
         val myIntent = Intent(Intent.ACTION_SEND)
         myIntent.type = "text/plain"
         val shareBody = "Share Note"
@@ -138,8 +136,8 @@ class EditNoteActivity : AppCompatActivity() {
         return super.onOptionsItemSelected(item)
     }
 
-    private fun deleteNote(){
-        var input = items("hitesh", newHeader , 0)
+    private fun deleteNote() {
+        var input = items("hitesh", newHeader, 0)
         itemsViewModel?.delete(input)
     }
 }
