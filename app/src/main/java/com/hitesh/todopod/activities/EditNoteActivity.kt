@@ -8,22 +8,20 @@ import android.text.TextWatcher
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
-import android.widget.EditText
 import android.widget.ImageButton
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
+import com.google.android.material.textfield.TextInputEditText
 import com.hitesh.todopod.R
 import com.hitesh.todopod.component.DaggerDateComponent
 import com.hitesh.todopod.items
 import com.hitesh.todopod.model.DateModel
 import com.hitesh.todopod.model.ItemsViewModel
-import kotlinx.android.synthetic.main.activity_edit_note.*
 import javax.inject.Inject
 
 class EditNoteActivity : AppCompatActivity() {
-    var editNote: EditText? = null
-    var headerText: EditText? = null
+    private lateinit var editNote: TextInputEditText
+    private lateinit var headerText: TextInputEditText
     var note: String? = null
     var header: String? = null
     var newNote: String? = null
@@ -39,8 +37,8 @@ class EditNoteActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_edit_note)
-        editNote = findViewById<View>(R.id.editNote) as EditText
-        headerText = findViewById<View>(R.id.headerEditText) as EditText
+        editNote = findViewById(R.id.editNote)
+        headerText = findViewById(R.id.headerEditText)
 
         statsButton = findViewById(R.id.statsButton)
 
