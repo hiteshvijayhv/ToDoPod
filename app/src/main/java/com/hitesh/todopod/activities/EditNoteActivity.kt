@@ -109,6 +109,12 @@ class EditNoteActivity : AppCompatActivity() {
         super.onBackPressed()
     }
 
+    /**
+     * Method to share notes
+     *
+     * @param view
+     * @return null
+     */
     fun shareNote(view: View) {
         val myIntent = Intent(Intent.ACTION_SEND)
         myIntent.type = "text/plain"
@@ -136,8 +142,13 @@ class EditNoteActivity : AppCompatActivity() {
         return super.onOptionsItemSelected(item)
     }
 
+    /**
+     * Method to share notes
+     *
+     * @return null
+     */
     private fun deleteNote() {
-        var input = items("hitesh", newHeader, 0)
+        val input = items("hitesh", newHeader, 0)
         itemsViewModel?.delete(input)
     }
 }

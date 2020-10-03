@@ -15,13 +15,12 @@ import com.hitesh.todopod.model.ItemsViewModel
 import javax.inject.Inject
 
 class AddNoteActivity : AppCompatActivity() {
-    var saveButton: Button? = null
-
+    private var saveButton: Button? = null
     private lateinit var headerText: TextInputEditText
     private lateinit var editText: TextInputEditText
 
+    private var itemsViewModel: ItemsViewModel? = null
 
-    var itemsViewModel: ItemsViewModel? = null
     @Inject lateinit var dateModel: DateModel
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -34,11 +33,16 @@ class AddNoteActivity : AppCompatActivity() {
                 ViewModelProvider.AndroidViewModelFactory(application))
                 .get(ItemsViewModel::class.java)
 
-        var dateModelComponent = DaggerDateComponent.create()
+        val dateModelComponent = DaggerDateComponent.create()
         dateModelComponent.inject(this)
-
     }
 
+    /**
+     * Method to share notes
+     *
+     * @param view
+     * @return null
+     */
     fun saveNote(view: View?) {
         val headerInput = headerText.text.toString()
         val userInput = editText.text.toString()

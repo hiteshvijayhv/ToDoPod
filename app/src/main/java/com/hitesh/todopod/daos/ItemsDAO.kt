@@ -1,10 +1,11 @@
-package com.hitesh.todopod
+package com.hitesh.todopod.daos
 
 import androidx.lifecycle.LiveData
 import androidx.room.*
+import com.hitesh.todopod.items
 
 @Dao
-interface itemsDAO {
+interface ItemsDAO {
     @Insert
     fun insert(items: items?)
 
