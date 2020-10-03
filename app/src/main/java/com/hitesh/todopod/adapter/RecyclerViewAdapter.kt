@@ -1,6 +1,5 @@
 package com.hitesh.todopod.adapter
 
-import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -19,7 +18,6 @@ class RecyclerViewAdapter(private val itemList: List<items>) : RecyclerView.Adap
     inner class MyViewHolder(view: View) : RecyclerView.ViewHolder(view){
         var title: TextView = view.title
         var title2: TextView = view.title2
-        var title3: TextView = view.title3
 
         init {
             view.setOnClickListener {
