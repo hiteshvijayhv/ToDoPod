@@ -3,21 +3,27 @@ package com.hitesh.todopod.helper
 import android.app.Application
 import androidx.lifecycle.LiveData
 import com.hitesh.todopod.items
-import com.hitesh.todopod.itemsDAO
+import com.hitesh.todopod.daos.ItemsDAO
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers.IO
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
-class itemsRepository {
-    var itemsDao: itemsDAO
-    var allitemss: LiveData<List<items>>
+class ItemsRepository(application: Application?) {
+    private lateinit var itemsDao: ItemsDAO
+    private lateinit var allitems: LiveData<List<items>>
     var callMethod: Int? = null
 
-    constructor(application: Application?) {
-        var database = itemsDatabase.getInstance(application)
-        itemsDao = database.itemsDAO()
-        allitemss = itemsDao.allNotes
+    init {
+        val database = application?.let { itemsDatabase.getInstance(it) }
+        if (database != null) {
+            itemsDao = database.itemsDAO()
+        }
+        allitems = itemsDao.allNotes
+    }
+
+    fun getAllitems(): LiveData<List<items>> {
+        return allitems
     }
 
     fun insert(items: items?) {
@@ -32,44 +38,44 @@ class itemsRepository {
         performOperation(itemsDao, items, 2)
     }
 
-    fun deleteAllitemss() {
+    fun deleteAllitems() {
        performOperation(itemsDao, null, 3)
     }
 
-    fun performOperation(itemsDao: itemsDAO?, items: items?, callMethod: Int?){
-        var itemsDao: itemsDAO? = null
+    fun performOperation(itemsDao: ItemsDAO?, items: items?, callMethod: Int?){
+        var itemsDao: ItemsDAO? = null
         if (itemsDao != null) this.itemsDao = itemsDao
         CoroutineScope(IO).launch {
             when(callMethod){
                 0 -> insertItem(items)
                 1 -> updateItem(items)
                 2 -> deleteItem(items)
-                3 -> deleteAllitemss()
+                3 -> deleteAllitems()
             }
         }
     }
 
     suspend fun insertItem(vararg itemss: items?){
         withContext(IO){
-            itemsDao?.insert(itemss[0])
+            itemsDao.insert(itemss[0])
         }
     }
 
     suspend fun updateItem(vararg itemss: items?){
         withContext(IO){
-            itemsDao?.update(itemss[0])
+            itemsDao.update(itemss[0])
         }
     }
 
     suspend fun deleteItem(vararg itemss: items?){
         withContext(IO){
-            itemsDao?.delete(itemss[0])
+            itemsDao.delete(itemss[0])
         }
     }
 
     suspend fun deleteAllItem(vararg itemss: items?){
         withContext(IO){
-            itemsDao?.deleteAllNotes()
+            itemsDao.deleteAllNotes()
         }
     }
 }

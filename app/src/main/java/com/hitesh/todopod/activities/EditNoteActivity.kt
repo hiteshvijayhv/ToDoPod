@@ -24,16 +24,15 @@ import javax.inject.Inject
 class EditNoteActivity : AppCompatActivity() {
     var editNote: EditText? = null
     var headerText: EditText? = null
-    var note: String? = null
-    var header: String? = null
+    private var note: String? = null
+    private var header: String? = null
     var newNote: String? = null
 
     var newHeader: String? = null
 
-    var statsButton: ImageButton? = null
+    private var statsButton: ImageButton? = null
 
-
-    var itemsViewModel: ItemsViewModel? = null
+    private var itemsViewModel: ItemsViewModel? = null
     @Inject lateinit var dateModel: DateModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -44,7 +43,7 @@ class EditNoteActivity : AppCompatActivity() {
 
         statsButton = findViewById(R.id.statsButton)
 
-        var intent: Intent = intent
+        val intent: Intent = intent
         note = intent.getStringExtra("keytitle")
         header = intent.getStringExtra("headertitle")
 
@@ -59,7 +58,7 @@ class EditNoteActivity : AppCompatActivity() {
                 ViewModelProvider.AndroidViewModelFactory(application))
                 .get(ItemsViewModel::class.java)
 
-        var dateModelComponent = DaggerDateComponent.create()
+        val dateModelComponent = DaggerDateComponent.create()
         dateModelComponent.inject(this)
 
         newNote = editNote?.text.toString()
@@ -93,7 +92,7 @@ class EditNoteActivity : AppCompatActivity() {
     }
 
     fun showStats(view: View){
-        var textLength = editNote?.text?.length
+        val textLength = editNote?.text?.length
         val builder: AlertDialog.Builder = AlertDialog.Builder(this)
         builder.setTitle("Statistics")
         builder.setMessage("Characters(with spaces) $textLength")
@@ -111,6 +110,12 @@ class EditNoteActivity : AppCompatActivity() {
         super.onBackPressed()
     }
 
+    /**
+     * Method to share note
+     *
+     * @param view
+     * @return null
+     */
     fun shareNote(view: View){
         val myIntent = Intent(Intent.ACTION_SEND)
         myIntent.type = "text/plain"
@@ -138,8 +143,13 @@ class EditNoteActivity : AppCompatActivity() {
         return super.onOptionsItemSelected(item)
     }
 
+    /**
+     * Method to share note
+     *
+     * @return null
+     */
     private fun deleteNote(){
-        var input = items("hitesh", newHeader , 0)
+        val input = items("hitesh", newHeader , 0)
         itemsViewModel?.delete(input)
     }
 }

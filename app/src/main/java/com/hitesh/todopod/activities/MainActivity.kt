@@ -44,13 +44,13 @@ class MainActivity : AppCompatActivity() {
         recycler_view?.itemAnimator = DefaultItemAnimator()
         recycler_view?.adapter = mAdapter
 
-        itemsViewModel?.allitemss?.observe(this, Observer { items -> mAdapter?.setNotes(items!!) })
+        itemsViewModel?.allitems?.observe(this, Observer { items -> mAdapter?.setNotes(items!!) })
 
         mAdapter?.setOnItemClickListener(object : RecyclerViewAdapter.OnItemClickListener {
             override fun onItemClick(items: items) {
-                var editNoteActivity: Intent? = Intent(applicationContext, EditNoteActivity::class.java)
-                var title: String? = items.title
-                var header: String? = items.description
+                val editNoteActivity: Intent? = Intent(applicationContext, EditNoteActivity::class.java)
+                val title: String? = items.title
+                val header: String? = items.description
                 editNoteActivity?.putExtra("headertitle", header)
                 editNoteActivity?.putExtra("keytitle", title)
                 startActivity(editNoteActivity)

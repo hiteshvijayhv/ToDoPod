@@ -16,11 +16,12 @@ import kotlinx.android.synthetic.main.activity_add_note.*
 import javax.inject.Inject
 
 class AddNoteActivity : AppCompatActivity() {
-    var saveButton: Button? = null
-    var userInput: String? = null
-    var headerInput: String? = null
+    private var saveButton: Button? = null
+    private var userInput: String? = null
+    private var headerInput: String? = null
 
-    var itemsViewModel: ItemsViewModel? = null
+    private var itemsViewModel: ItemsViewModel? = null
+
     @Inject lateinit var dateModel: DateModel
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -30,11 +31,17 @@ class AddNoteActivity : AppCompatActivity() {
                 ViewModelProvider.AndroidViewModelFactory(application))
                 .get(ItemsViewModel::class.java)
 
-        var dateModelComponent = DaggerDateComponent.create()
+        val dateModelComponent = DaggerDateComponent.create()
         dateModelComponent.inject(this)
 
     }
 
+    /**
+     * Method to save note
+     *
+     * @param view
+     * @return null
+     * */
     fun saveNote(view: View?) {
         headerInput = headerText?.text.toString()
         userInput = editText?.text.toString()
