@@ -1,0 +1,36 @@
+version: 2
+updates:
+- package-ecosystem: gradle
+  directory: "/"
+  schedule:
+    interval: daily
+    time: "23:30"
+  open-pull-requests-limit: 10
+  ignore:
+  - dependency-name: androidx.room:room-compiler
+    versions:
+    - 2.2.6
+  - dependency-name: androidx.room:room-runtime
+    versions:
+    - 2.2.6
+  - dependency-name: com.android.tools.build:gradle
+    versions:
+    - 4.1.2
+  - dependency-name: org.jetbrains.kotlinx:kotlinx-coroutines-android
+    versions:
+    - 1.4.2-native-mt
+  - dependency-name: org.jetbrains.kotlinx:kotlinx-coroutines-core
+    versions:
+    - 1.4.2-native-mt
+  - dependency-name: junit:junit
+    versions:
+    - 4.13.1
+  - dependency-name: org.jetbrains.kotlin:kotlin-stdlib
+    versions:
+    - 1.4.10
+  - dependency-name: org.jetbrains.kotlin:kotlin-gradle-plugin
+    versions:
+    - 1.4.10
+  - dependency-name: com.google.android.material:material
+    versions:
+    - 1.2.1
